@@ -1,0 +1,10 @@
+{
+  "name": "SiIvaGunner Joke Explainer 7000",
+  "description": "Opens the SiIvaGunner wiki page of the current high quality rip you're listening to.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["tabs"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
