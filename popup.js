@@ -15,7 +15,8 @@ chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
     if (checkIfYouTubeUrl(tabUrl)) {
 		let isSiIvaGunnerChannel = await checkIfSiIvaGunnerChannel(tabUrl);
 		if (isSiIvaGunnerChannel) {
-			// All checks complete!
+			videoTitle = await getVideoTitle(tabUrl);
+			setStatus("Rip: " + videoTitle);
 		} else {
 			// Disable button and show appropriate info
 			setStatus("You aren't watching a high quality rip on the SiIvaGunner channel.", true);
@@ -69,6 +70,13 @@ async function checkIfSiIvaGunnerChannel(videoUrl) {
 		console.log("Is NOT a video by SiIvaGunner");
 		return false;
 	}
+}
+
+async function getVideoTitle(videoUrl) {
+	var videoData = await getYouTubeVideoData(videoUrl);
+	var title = videoData.title;
+	console.log("Video Title: " + title);
+	return title;
 }
 
 function submitted(event) {
