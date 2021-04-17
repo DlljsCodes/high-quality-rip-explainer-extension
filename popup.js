@@ -1,4 +1,5 @@
 const f = document.getElementById("form");
+const button = document.getElementById("submit");
 const status = document.getElementById("status");
 const link = 'https://siivagunner.fandom.com/wiki/';
 
@@ -17,6 +18,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
 		if (isSiIvaGunnerChannel) {
 			videoTitle = await getVideoTitle(tabUrl);
 			setStatus("Rip: " + videoTitle);
+			setButtonDisabled(false);
 		} else {
 			// Disable button and show appropriate info
 			setStatus("You aren't watching a high quality rip on the SiIvaGunner channel.", true);
@@ -47,6 +49,10 @@ function setStatus(message, redText) {
 	} else {
 		status.style.color = "initial";
 	}
+}
+
+function setButtonDisabled(state) {
+	button.disabled = state;
 }
 
 function checkIfYouTubeUrl(url) {
