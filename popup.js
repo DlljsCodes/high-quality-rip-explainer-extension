@@ -11,25 +11,28 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
     console.log("Current Tab URL: " + url);
     tabUrl = url;
-	youTubeCheck = checkIfYouTubeUrl(tabUrl);
-    if (youTubeCheck) {
-		getYouTubeVideoData(tabUrl); // Temporary call
+    if (checkIfYouTubeUrl(tabUrl)) {
+		if (checkIfSiIvaGunnerChannel(tabUrl)) {
+			// All checks complete!
+		} else {
+			// Disable button and show appropriate info
+		}
 	} else {
 		// Disable button and show appropriate info
 	}
 });
 
-function getYouTubeVideoData(videoUrl) {
+async function getYouTubeVideoData(videoUrl) {
 	const dataUrlPre = "https://youtube.com/oembed?url=";
 	const dataUrlSuf = "&format=json";
 	var dataUrl = dataUrlPre + videoUrl + dataUrlSuf;
-	console.log("OEmbed URL: " + dataUrl);
-	fetch(dataUrl)
-		.then(result => result.json())
-		.then((out) => {
-		console.log("Success! Output: ", out);
-		return out;
-	}).catch(err => {console.error(err)});
+	try {
+		let res = await fetch(dataUrl);
+		return await res.json();
+		console.log("Success! Output: ", res,json());
+	} catch(error) {
+		console.error(error);
+	}
 }
 
 function checkIfYouTubeUrl(url) {
@@ -38,6 +41,19 @@ function checkIfYouTubeUrl(url) {
 		return true;
 	} else {
 		console.log("Is NOT a YouTube URL");
+		return false;
+	}
+}
+
+async function checkIfSiIvaGunnerChannel(videoUrl) {
+	var videoData = await getYouTubeVideoData(videoUrl);
+	var channelName = videoData.author_name;
+	console.log("Channel Name: " + channelName);
+	if (channelName == "SiIvaGunner") {
+		console.log("Is a video by SiIvaGunner");
+		return true;
+	} else {
+		console.log("Is NOT a video by SiIvaGunner");
 		return false;
 	}
 }
