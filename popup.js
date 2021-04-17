@@ -56,7 +56,7 @@ function setButtonDisabled(state) {
 }
 
 function checkIfYouTubeUrl(url) {
-	if (url.slice(0, 23) == "https://www.youtube.com") {
+	if (url.slice(0, 32) == "https://www.youtube.com/watch?v=") {
 		console.log("Is a YouTube URL");
 		return true;
 	} else {
