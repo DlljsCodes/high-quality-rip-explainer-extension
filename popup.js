@@ -1,24 +1,28 @@
 const f = document.getElementById("form");
+const status = document.getElementById("status");
 const link = 'https://siivagunner.fandom.com/wiki/';
 
 var tabUrl;
 var videoTitle;
 var error = false;
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
     var tab = tabs[0];
     var url = tab.url;
 
     console.log("Current Tab URL: " + url);
     tabUrl = url;
     if (checkIfYouTubeUrl(tabUrl)) {
-		if (checkIfSiIvaGunnerChannel(tabUrl)) {
+		let isSiIvaGunnerChannel = await checkIfSiIvaGunnerChannel(tabUrl);
+		if (isSiIvaGunnerChannel) {
 			// All checks complete!
 		} else {
 			// Disable button and show appropriate info
+			setStatus("You aren't watching a high quality rip on the SiIvaGunner channel.", true);
 		}
 	} else {
 		// Disable button and show appropriate info
+		setStatus("You aren't watching a YouTube video.", true);
 	}
 });
 
@@ -32,6 +36,15 @@ async function getYouTubeVideoData(videoUrl) {
 		console.log("Success! Output: ", res,json());
 	} catch(error) {
 		console.error(error);
+	}
+}
+
+function setStatus(message, redText) {
+	status.innerHTML = message;
+	if (redText) {
+		status.style.color = "DarkRed";
+	} else {
+		status.style.color = "initial";
 	}
 }
 
