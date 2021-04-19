@@ -1,5 +1,5 @@
 {
-  "name": "SiIvaGunner Joke Explainer 7000",
+  "name": "SiIvaGunner Joke-Explainer™ 7000",
   "description": "Opens the SiIvaGunner wiki page of the current high quality rip you're listening to.",
   "version": "0.0.1",
   "manifest_version": 3,
@@ -7,16 +7,16 @@
   "action": {
     "default_popup": "popup.html",
 	"default_icon": {
-      "16": "/img/icons/je7k_icon_16.png",
-      "32": "/img/icons/je7k_icon_32.png",
-      "48": "/img/icons/je7k_icon_48.png",
-      "128": "/img/icons/je7k_icon_128.png"
+      "16": "/icons/je7k_icon_16.png",
+      "32": "/icons/je7k_icon_32.png",
+      "48": "/icons/je7k_icon_48.png",
+      "128": "/icons/je7k_icon_128.png"
     }
   },
   "icons": {
-	  "16": "/img/icons/je7k_icon_16.png",
-	  "32": "/img/icons/je7k_icon_32.png",
-	  "48": "/img/icons/je7k_icon_48.png",
-	  "128": "/img/icons/je7k_icon_128.png"
+	  "16": "/icons/je7k_icon_16.png",
+	  "32": "/icons/je7k_icon_32.png",
+	  "48": "/icons/je7k_icon_48.png",
+	  "128": "/icons/je7k_icon_128.png"
 	}
 }
