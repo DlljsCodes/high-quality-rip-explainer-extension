@@ -17,15 +17,15 @@ chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
 		let isSiIvaGunnerChannel = await checkIfSiIvaGunnerChannel(tabUrl);
 		if (isSiIvaGunnerChannel) {
 			videoTitle = await getVideoTitle(tabUrl);
-			setStatus("Rip: " + videoTitle);
+			setStatus("Rip: <a href=\""+ tabUrl +"\" target=\"_blank\">" + videoTitle + "</a>");
 			setButtonDisabled(false);
 		} else {
 			// Disable button and show appropriate info
-			setStatus("You aren't watching a high quality rip on the SiIvaGunner channel.", true);
+			setStatus("You aren't watching a high quality rip on the <a href=\"https://www.youtube.com/channel/UC9ecwl3FTG66jIKA9JRDtmg\" target=\"_blank\">SiIvaGunner channel</a>.", true);
 		}
 	} else {
 		// Disable button and show appropriate info
-		setStatus("You aren't watching a YouTube video.", true);
+		setStatus("You aren't watching a <a href=\"https://www.youtube.com\" target=\"_blank\">YouTube</a> video.", true);
 	}
 });
 
