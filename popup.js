@@ -27,6 +27,9 @@ chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
 		// Disable button and show appropriate info
 		setStatus("You aren't watching a <a href=\"https://www.youtube.com\" target=\"_blank\">YouTube</a> video.", true);
 	}
+	if (error) {
+		setStatus("Sorry, something went wrong! Try again later...", true);
+	}
 });
 
 async function getYouTubeVideoData(videoUrl) {
@@ -39,6 +42,7 @@ async function getYouTubeVideoData(videoUrl) {
 		console.log("Success! Output: ", res,json());
 	} catch(error) {
 		console.error(error);
+		window.error = true;
 	}
 }
 
@@ -66,23 +70,33 @@ function checkIfYouTubeUrl(url) {
 }
 
 async function checkIfSiIvaGunnerChannel(videoUrl) {
-	var videoData = await getYouTubeVideoData(videoUrl);
-	var channelName = videoData.author_name;
-	console.log("Channel Name: " + channelName);
-	if (channelName == "SiIvaGunner") {
-		console.log("Is a video by SiIvaGunner");
-		return true;
-	} else {
-		console.log("Is NOT a video by SiIvaGunner");
-		return false;
+	try {
+		var videoData = await getYouTubeVideoData(videoUrl);
+		var channelName = videoData.author_name;
+		console.log("Channel Name: " + channelName);
+		if (channelName == "SiIvaGunner") {
+			console.log("Is a video by SiIvaGunner");
+			return true;
+		} else {
+			console.log("Is NOT a video by SiIvaGunner");
+			return false;
+		}
+	} catch(error) {
+		console.error(error);
+		window.error = true;
 	}
 }
 
 async function getVideoTitle(videoUrl) {
-	var videoData = await getYouTubeVideoData(videoUrl);
-	var title = videoData.title;
-	console.log("Video Title: " + title);
-	return title;
+	try {
+		var videoData = await getYouTubeVideoData(videoUrl);
+		var title = videoData.title;
+		console.log("Video Title: " + title);
+		return title;
+	} catch(error) {
+		console.error(error);
+		window.error = true;
+	}
 }
 
 function submitted(event) {
