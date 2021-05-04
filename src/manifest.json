@@ -1,7 +1,7 @@
 {
   "name": "High Quality Rip Explainer",
   "description": "Gets the joke of the current SiIvaGunner high quality rip you're listening to.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "manifest_version": 3,
   "permissions": ["tabs"],
   "action": {
