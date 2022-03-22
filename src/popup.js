@@ -63,6 +63,9 @@ function checkIfYouTubeUrl(url) {
 	if (url.slice(0, 32) == "https://www.youtube.com/watch?v=") {
 		console.log("Is a YouTube URL");
 		return true;
+	} else if (url.slice(0, 31) == "https://www.youtube.com/shorts/") {
+		console.log("Is a YouTube Shorts URL");
+		return true;
 	} else {
 		console.log("Is NOT a YouTube URL");
 		return false;
