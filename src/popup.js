@@ -1,7 +1,7 @@
 const f = document.getElementById("form");
 const button = document.getElementById("submit");
 const status = document.getElementById("status");
-const link = 'https://siivagunner.fandom.com/wiki/';
+const link = 'https://www.siivagunner.wiki/wiki/';
 
 var tabUrl;
 var videoTitle;
